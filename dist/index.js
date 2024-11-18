@@ -15,13 +15,13 @@ const axios_1 = require("axios");
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const token = core.getInput('GIT_TOKEN');
-            const claudeApiKey = core.getInput('CLAUDE_API_KEY');
-            if (!token) {
-                throw new Error("GIT_TOKEN is required");
-            }
+            const token = process.env.GITHUB_TOKEN;
+            const claudeApiKey = process.env.CLAUDE_API_KEY;
             if (!claudeApiKey) {
                 throw new Error("CLAUDE_API_KEY is required");
+            }
+            if (!token) {
+                throw new Error("GIT_TOKEN is required");
             }
             const octokit = github.getOctokit(token);
             const context = github.context;
