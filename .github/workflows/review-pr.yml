@@ -25,3 +25,8 @@ jobs:
       env:
         GIT_TOKEN: ${{ secrets.GIT_TOKEN }}
         CLAUDE_API_KEY: ${{ secrets.CLAUDE_API_KEY }}
+    
+    - run: echo "CLAUDE_API_KEY=${{ secrets.CLAUDE_API_KEY }}" # Do NOT do this in production
+    - run: echo "GIT_TOKEN=${{ secrets.GIT_TOKEN }}" # Do NOT do this in production
+
+        
