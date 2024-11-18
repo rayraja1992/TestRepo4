@@ -16,7 +16,7 @@ function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             const token = process.env.GITHUB_TOKEN;
-            const claudeApiKey = core.getInput('CLAUDE_API_KEY');
+            const claudeApiKey = process.env.CLAUDE_API_KEY || core.getInput('CLAUDE_API_KEY');
             if (!claudeApiKey) {
                 throw new Error("CLAUDE_API_KEY is required");
             }
