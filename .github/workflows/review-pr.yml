@@ -23,5 +23,5 @@ jobs:
     - name: Run review script
       run: node dist/index.js
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        COPILOT_API_KEY: ${{ secrets.COPILOT_API_KEY }}
+        GIT_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        CLAUDE_API_KEY: ${{ secrets.CLAUDE_API_KEY }}

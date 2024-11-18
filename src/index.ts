@@ -4,8 +4,8 @@ import axios from 'axios';
 
 async function run() {
   try {
-    const token = core.getInput('GITHUB_TOKEN');
-    const copilotApiKey = core.getInput('COPILOT_API_KEY');
+    const token = core.getInput('GIT_TOKEN');
+    const claudeApiKey = core.getInput('CLAUDE_API_KEY');
     const octokit = github.getOctokit(token);
     const context = github.context;
 
@@ -23,8 +23,8 @@ async function run() {
 
     for (const file of files) {
       if (file.status === 'added' || file.status === 'modified') {
-        const response = await axios.post('https://api.githubcopilot.com/v1/review', {
-          apiKey: copilotApiKey,
+        const response = await axios.post('https://api.claude.com/v1/review', {
+          apiKey: claudeApiKey,
           filePath: file.filename,
           fileContent: file.patch,
         });
@@ -43,7 +43,11 @@ async function run() {
       }
     }
   } catch (error) {
-    core.setFailed(error.message);
+    if (error instanceof Error) {
+      core.setFailed(error.message);
+    } else {
+      core.setFailed('An unknown error occurred');
+    }
   }
 }
 
