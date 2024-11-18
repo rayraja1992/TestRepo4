@@ -17,6 +17,12 @@ function run() {
         try {
             const token = core.getInput('GIT_TOKEN');
             const claudeApiKey = core.getInput('CLAUDE_API_KEY');
+            if (!token) {
+                throw new Error("GIT_TOKEN is required");
+            }
+            if (!claudeApiKey) {
+                throw new Error("CLAUDE_API_KEY is required");
+            }
             const octokit = github.getOctokit(token);
             const context = github.context;
             if (context.payload.pull_request == null) {
