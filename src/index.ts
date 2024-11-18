@@ -34,7 +34,7 @@ async function run() {
 
     for (const file of files) {
       if (file.status === 'added' || file.status === 'modified') {
-        const response = await axios.post('https://api.claude.com/v1/review', {
+        const response = await axios.post('https://api.anthropic.com/v1/messages', {
           apiKey: claudeApiKey,
           filePath: file.filename,
           fileContent: file.patch,
