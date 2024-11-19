@@ -17,6 +17,7 @@ public without sharing class AccessTypeCTRL {
     public static String provideCurrentUserConId(){
         Contact con = [Select Id from Contact where Email =: UserInfo.getUserEmail()]; 
         return con.Id;
+        return con.Id;
     }
         
     /**
